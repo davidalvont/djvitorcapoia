@@ -145,37 +145,54 @@
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    
+    </head>
+
   <body>
     <div id="root"></div>
-    <script>
-      // Para Github Pages e domínio personalizado
+    <script type="module" src="/src/main.tsx"></script>
+        <script>
+      // SPA redirection para GitHub Pages ou domínio personalizado
       (function() {
-        // Script de redirecionamento para SPA no GitHub Pages
-        var pathSegmentsToKeep = 0;
-        var isGithubPages = window.location.hostname === 'davidalvont.github.io';
+        // Detecta o ambiente de execução
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const isCustomDomain = window.location.hostname === 'djvitorcapoia.com.br' || 
+                              window.location.hostname.includes('djvitorcapoia');
         
-        if (isGithubPages) {
-          pathSegmentsToKeep = 1; // Um segmento para 'djvitorcapoia'
+        const path = window.location.pathname;
+        const hash = window.location.hash || '';
+        const search = window.location.search || '';
+        
+        // Define o basePath com base no ambiente
+        let basePath = '';
+        
+        // Se estamos no GitHub Pages sem domínio personalizado, usa /djvitorcapoia
+        if (isGitHubPages && !isCustomDomain) {
+          basePath = '/djvitorcapoia';
         }
-
-        var l = window.location;
-        var basePath = isGithubPages ? '/djvitorcapoia/' : '/';
         
-        // Redireciona para a página inicial com os parâmetros corretos
-        // Modificado para trabalhar com SPA no GitHub Pages
-        var segmentCount = pathSegmentsToKeep + 1;
-        var cleanPath = l.pathname.split('/').slice(segmentCount).join('/');
-        var cleanUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath;
+        // Caso 0: Domínio personalizado com /djvitorcapoia/ no caminho (erro comum)
+        if (isCustomDomain && path.startsWith('/djvitorcapoia/')) {
+          // Redireciona para a mesma URL sem o prefixo /djvitorcapoia/
+          const newPath = path.replace('/brisanet', '');
+          window.location.replace(newPath + search);
+          return;
+        }
         
-        // Encode para manter compatibilidade com o GitHub Pages
-        var redirectUrl = cleanUrl + '?/' + cleanPath +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          (l.hash || '');
-          
-        l.replace(redirectUrl);
+        // Caso 1: GitHub Pages - redirecionar URLs sem o basePath correto
+        if (isGitHubPages && !isCustomDomain && !path.startsWith(basePath)) {
+          window.location.replace(basePath + '/' + search);
+          return;
+        }
+        
+        // Caso 2: Qualquer ambiente - URL que deveria ser um hash (SPA route)
+        // Ex: /faq deve virar /#/faq, ou /djvitorcapoia/faq deve virar /djvitorcapoia/#/faq
+        if (path !== '/' && path !== basePath && path !== basePath + '/') {
+          // Extrai a parte da rota após o basePath
+          const route = path.replace(basePath, '').replace(/^\//, '');
+          window.location.replace(basePath + '/' + route + search);
+          return;
+        }
       })();
     </script>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
