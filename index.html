@@ -133,10 +133,10 @@
     <meta name="ICBM" content="-23.4205, -51.9331" />
     
     <!-- Favicon e Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/djvitorcapoia/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/djvitorcapoia/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/djvitorcapoia/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/djvitorcapoia/favicon.ico" />
     
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -146,10 +146,10 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     
-    <!-- SPA GitHub Pages hack - Parte 2: Processa redirecionamentos -->
+
+    <!-- Solução para SPA no GitHub Pages -->
     <script type="text/javascript">
-      // Single Page App hack para GitHub Pages
-      // https://github.com/rafgraph/spa-github-pages
+      // Gerencia URLs para SPA no GitHub Pages
       (function(l) {
         if (l.search[1] === '/' ) {
           var decoded = l.search.slice(1).split('&').map(function(s) { 
@@ -161,73 +161,11 @@
         }
       }(window.location))
     </script>
-    <script type="module" crossorigin src="/assets/index-W6sdpsPC.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DDqGRntr.css">
+    <script type="module" crossorigin src="/djvitorcapoia/assets/index-5f9HNjf8.js"></script>
+    <link rel="stylesheet" crossorigin href="/djvitorcapoia/assets/index-DDqGRntr.css">
   </head>
 
-<body>
+  <body>
     <div id="root"></div>
-    
-    <script>
-      (function() {
-        
-
-        const host = window.location.hostname;
-        const path = window.location.pathname;
-        
-
-        function removeSubpathFromUrl(url) {
-          if (typeof url === 'string' && url.includes('/djvitorcapoa/')) {
-            return url.replace('/djvitorcapoa/', '/');
-          }
-          return url;
-        }
-        
-
-        if (host === 'djvitorcapoia.com.br' || host.includes('djvitorcapoia')) {
-
-          if (path.startsWith('/djvitorcapoia/')) {
-            window.location.replace(path.replace('/djvitorcapoia', '') + window.location.hash + window.location.search);
-            return;
-          }
-          
-
-          const originalCreateElement = document.createElement;
-          document.createElement = function() {
-            const element = originalCreateElement.apply(document, arguments);
-            
-
-            if (arguments[0].toLowerCase() === 'script' || 
-                arguments[0].toLowerCase() === 'link' || 
-                arguments[0].toLowerCase() === 'img') {
-              
-              const originalSetAttribute = element.setAttribute;
-              element.setAttribute = function(name, value) {
-                if ((name === 'src' || name === 'href') && value) {
-                  value = removeSubpathFromUrl(value);
-                }
-                return originalSetAttribute.call(this, name, value);
-              };
-            }
-            
-            return element;
-          };
-        }
-        
-
-        function fixExistingUrls() {
-          document.querySelectorAll('[src], [href]').forEach(el => {
-            if (el.src) el.src = removeSubpathFromUrl(el.src);
-            if (el.href) el.href = removeSubpathFromUrl(el.href);
-          });
-        }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', fixExistingUrls);
-        } else {
-          fixExistingUrls();
-        }
-      })();
-    </script>
   </body>
 </html>

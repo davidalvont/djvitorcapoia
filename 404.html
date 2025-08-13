@@ -146,87 +146,36 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     
-    <!-- SPA GitHub Pages hack - Parte 2: Processa redirecionamentos -->
-    <script type="text/javascript">
-      // Single Page App hack para GitHub Pages
-      // https://github.com/rafgraph/spa-github-pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
-    </script>
-  </head>
-
-<body>
+  <body>
     <div id="root"></div>
-  <!-- Corrigido: referência ao bundle será inserida pelo Vite no build. -->
-    
     <script>
+      // Para Github Pages e domínio personalizado
       (function() {
+        // Script de redirecionamento para SPA no GitHub Pages
+        var pathSegmentsToKeep = 0;
+        var isGithubPages = window.location.hostname === 'davidalvont.github.io';
         
-
-        const host = window.location.hostname;
-        const path = window.location.pathname;
-        
-
-        function removeSubpathFromUrl(url) {
-          if (typeof url === 'string' && url.includes('/djvitorcapoa/')) {
-            return url.replace('/djvitorcapoa/', '/');
-          }
-          return url;
+        if (isGithubPages) {
+          pathSegmentsToKeep = 1; // Um segmento para 'djvitorcapoia'
         }
+
+        var l = window.location;
+        var basePath = isGithubPages ? '/djvitorcapoia/' : '/';
         
-
-        if (host === 'djvitorcapoia.com.br' || host.includes('djvitorcapoia')) {
-
-          if (path.startsWith('/djvitorcapoia/')) {
-            window.location.replace(path.replace('/djvitorcapoia', '') + window.location.hash + window.location.search);
-            return;
-          }
+        // Redireciona para a página inicial com os parâmetros corretos
+        // Modificado para trabalhar com SPA no GitHub Pages
+        var segmentCount = pathSegmentsToKeep + 1;
+        var cleanPath = l.pathname.split('/').slice(segmentCount).join('/');
+        var cleanUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath;
+        
+        // Encode para manter compatibilidade com o GitHub Pages
+        var redirectUrl = cleanUrl + '?/' + cleanPath +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          (l.hash || '');
           
-
-          const originalCreateElement = document.createElement;
-          document.createElement = function() {
-            const element = originalCreateElement.apply(document, arguments);
-            
-
-            if (arguments[0].toLowerCase() === 'script' || 
-                arguments[0].toLowerCase() === 'link' || 
-                arguments[0].toLowerCase() === 'img') {
-              
-              const originalSetAttribute = element.setAttribute;
-              element.setAttribute = function(name, value) {
-                if ((name === 'src' || name === 'href') && value) {
-                  value = removeSubpathFromUrl(value);
-                }
-                return originalSetAttribute.call(this, name, value);
-              };
-            }
-            
-            return element;
-          };
-        }
-        
-
-        function fixExistingUrls() {
-          document.querySelectorAll('[src], [href]').forEach(el => {
-            if (el.src) el.src = removeSubpathFromUrl(el.src);
-            if (el.href) el.href = removeSubpathFromUrl(el.href);
-          });
-        }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', fixExistingUrls);
-        } else {
-          fixExistingUrls();
-        }
+        l.replace(redirectUrl);
       })();
     </script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
