@@ -174,13 +174,13 @@
         if (isCustomDomain && path.startsWith('/djvitorcapoia/')) {
           // Redireciona para a mesma URL sem o prefixo /djvitorcapoia/
           const newPath = path.replace('/brisanet', '');
-          window.location.replace(newPath + hash + search);
+          window.location.replace(newPath + search);
           return;
         }
         
         // Caso 1: GitHub Pages - redirecionar URLs sem o basePath correto
         if (isGitHubPages && !isCustomDomain && !path.startsWith(basePath)) {
-          window.location.replace(basePath + '/' + hash + search);
+          window.location.replace(basePath + '/' + search);
           return;
         }
         
@@ -189,7 +189,7 @@
         if (path !== '/' && path !== basePath && path !== basePath + '/') {
           // Extrai a parte da rota após o basePath
           const route = path.replace(basePath, '').replace(/^\//, '');
-          window.location.replace(basePath + '/#/' + route + search);
+          window.location.replace(basePath + '/' + route + search);
           return;
         }
       })();
