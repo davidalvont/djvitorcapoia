@@ -31,33 +31,33 @@
     <meta name="theme-color" content="#7c3aed" />
     <meta name="msapplication-navbutton-color" content="#7c3aed" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#7c3aed" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://djvitorcapoia.com.br" />
     
     <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://djvitorcapoia.com.br" />
-  <meta property="og:title" content="DJ Vitor Capoia | DJ Cristão | Música Eletrônica | Brasil" />
-  <meta property="og:description" content="DJ Vitor Capoia - DJ cristão especializado em música eletrônica de alta qualidade. Atuação em shows, eventos, casamentos e celebrações em Maringá-PR e em todo o Brasil, com repertório limpo e adequado para toda a família." />
-  <meta property="og:image" content="https://djvitorcapoia.com.br/vitor.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="DJ Vitor Capoia - DJ Cristão especializado em Música Eletrônica no Brasil" />
-  <meta property="og:site_name" content="DJ Vitor Capoia" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="article:author" content="DJ Vitor Capoia" />
-  <meta property="article:publisher" content="https://www.facebook.com/djvitorcapoia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://djvitorcapoia.com.br" />
+    <meta property="og:title" content="DJ Vitor Capoia | DJ Cristão | Música Eletrônica | Brasil" />
+    <meta property="og:description" content="DJ Vitor Capoia - DJ cristão especializado em música eletrônica de alta qualidade. Atuação em shows, eventos, casamentos e celebrações em Maringá-PR e em todo o Brasil, com repertório limpo e adequado para toda a família." />
+    <meta property="og:image" content="https://djvitorcapoia.com.br/vitor.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DJ Vitor Capoia - DJ Cristão especializado em Música Eletrônica no Brasil" />
+    <meta property="og:site_name" content="DJ Vitor Capoia" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="article:author" content="DJ Vitor Capoia" />
+    <meta property="article:publisher" content="https://www.facebook.com/djvitorcapoia" />
 
-  <!-- WhatsApp Preview (Open Graph) -->
-  <meta property="og:image" content="https://djvitorcapoia.com.br/vitor.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+    <!-- WhatsApp Preview (Open Graph) -->
+    <meta property="og:image" content="https://djvitorcapoia.com.br/vitor.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -161,73 +161,11 @@
         }
       }(window.location))
     </script>
-    <script type="module" crossorigin src="/assets/index-W6sdpsPC.js"></script>
+    <script type="module" crossorigin src="/assets/index-CTrNyOjj.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DDqGRntr.css">
   </head>
 
-<body>
+  <body>
     <div id="root"></div>
-    
-    <script>
-      (function() {
-        
-
-        const host = window.location.hostname;
-        const path = window.location.pathname;
-        
-
-        function removeSubpathFromUrl(url) {
-          if (typeof url === 'string' && url.includes('/djvitorcapoia/')) {
-            return url.replace('/djvitorcapoia/', '/');
-          }
-          return url;
-        }
-        
-
-        if (host === 'djvitorcapoia.com.br' || host.includes('djvitorcapoia')) {
-
-          if (path.startsWith('/djvitorcapoia/')) {
-            window.location.replace(path.replace('/djvitorcapoia', '') + window.location.hash + window.location.search);
-            return;
-          }
-          
-
-          const originalCreateElement = document.createElement;
-          document.createElement = function() {
-            const element = originalCreateElement.apply(document, arguments);
-            
-
-            if (arguments[0].toLowerCase() === 'script' || 
-                arguments[0].toLowerCase() === 'link' || 
-                arguments[0].toLowerCase() === 'img') {
-              
-              const originalSetAttribute = element.setAttribute;
-              element.setAttribute = function(name, value) {
-                if ((name === 'src' || name === 'href') && value) {
-                  value = removeSubpathFromUrl(value);
-                }
-                return originalSetAttribute.call(this, name, value);
-              };
-            }
-            
-            return element;
-          };
-        }
-        
-
-        function fixExistingUrls() {
-          document.querySelectorAll('[src], [href]').forEach(el => {
-            if (el.src) el.src = removeSubpathFromUrl(el.src);
-            if (el.href) el.href = removeSubpathFromUrl(el.href);
-          });
-        }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', fixExistingUrls);
-        } else {
-          fixExistingUrls();
-        }
-      })();
-    </script>
   </body>
 </html>

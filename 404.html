@@ -1,76 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Título Principal SEO -->
-    <title>DJ Vitor Capoia | DJ Cristão | Música Eletrônica | Brasil</title>
-    
-    <!-- Meta Tags SEO Básicas -->
-    <meta name="description" content="DJ Vitor Capoia - DJ Cristão de Maringá - especializado em música eletrônica de qualidade no Brasil. Shows, eventos, casamentos e celebrações em Maringá, Paraná e todo o país com música limpa e familiar." />
-    <meta name="hire" content="Contrate DJ Vitor Capoia - DJ cristão para eventos, casamentos, festas e formaturas. Baseado em Maringá-PR e disponível para todo o Brasil, com música eletrônica de qualidade, repertório limpo e ambiente familiar." />
-    <meta name="author" content="DJ Vitor Capoia" />
-    <meta name="keywords" content="DJ Vitor Capoia, DJ Cristão Brasil, DJ Cristão Maringá, DJ Cristão Paraná, música eletrônica cristã Brasil, eventos cristãos, casamentos Brasil, música limpa, DJ família, entretenimento cristão, shows Brasil, DJ profissional, música gospel eletrônica, celebrações, eventos corporativos, DJ contratação Brasil, DJ Paraná, DJ São Paulo, DJ Rio de Janeiro, DJ Minas Gerais, DJ Sul, DJ Sudeste" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="language" content="pt-BR" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="rating" content="general" />
-    <meta name="distribution" content="global" />
-    <meta name="coverage" content="worldwide" />
-    <meta name="target" content="all" />
-    <meta name="audience" content="all" />
-    <meta name="classification" content="DJ, Música Eletrônica Cristã, Entretenimento Cristão" />
-    <meta name="subject" content="DJ Cristão e Produtor Musical especializado em música eletrônica cristão de qualidade" />
-    <meta name="copyright" content="© 2025 DJ Vitor Capoia. Todos os direitos reservados." />
-    <meta name="designer" content="DJ Vitor Capoia" />
-    <meta name="owner" content="DJ Vitor Capoia" />
-    <meta name="url" content="https://djvitorcapoia.com.br" />
-    <meta name="identifier-URL" content="https://djvitorcapoia.com.br" />
-    <meta name="category" content="Entretenimento, Música, Serviços de DJ, Música Cristã" />
-    <meta name="theme-color" content="#7c3aed" />
-    <meta name="msapplication-navbutton-color" content="#7c3aed" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#7c3aed" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://djvitorcapoia.com.br" />
-    
-    <!-- Favicon e Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
-    
-    <!-- Preconnect para performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.google-analytics.com" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    
-    <!-- SPA GitHub Pages hack - Parte 2: Processa redirecionamentos -->
+    <meta charset="utf-8">
+    <title>DJ Vitor Capoia</title>
     <script type="text/javascript">
-      // Single Page App hack para GitHub Pages
+      // SPA GitHub Pages hack - Parte 1: Redireciona 404s para index.html com query string
       // https://github.com/rafgraph/spa-github-pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
+      var pathSegmentsToKeep = 0;
+      
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
+        '/?/' + l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
     </script>
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
